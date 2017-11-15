@@ -1,6 +1,6 @@
 # munger
 
-This python package prefixes all your variable names with another name (underscore, by default).  It was an idle experiment to play with python's importlib, inspect standard modules and to get a deeper understanding of the Python language model.
+This python package prefixes all your variable names with another name using Python's default munging behavior (dunder namespace).  It was an idle experiment to play with python's importlib, inspect standard modules and to get a deeper understanding of the Python language model.
 
 ## Usage Example
 ```python

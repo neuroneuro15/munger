@@ -10,14 +10,22 @@ Please note that this package breaks all of your variable names, producing some 
 
 The key function here is the *munge()* function.  Here's the code for the lazy::
 ```python
-    import importlib
-    def munge(namespace='__main__', prefix='_'):
-        """Precedes all names in 'namespace' with 'prefix'."""
-        module = importlib.import_module(namespace)
-        for name, val in vars(module).items():
-            if len(name) >= prefix) and name[:len(prefix)] != prefix:
-                setattr(module, prefix + name, val)
-                delattr(module, name)
+  safe_names = []
+
+  def munge(namespace='__main__'):
+      """Precedes all names in 'namespace' with 'prefix'."""
+
+      module = importlib.import_module(namespace)
+      global safe_names
+      if not safe_names:
+          safe_names.extend(vars(module).keys())
+
+      prefix = '__{}__'.format(namespace)
+      to_munge = {name: val for name, val in vars(module).items() if name not in safe_names}
+      for name, val in to_munge.items():
+          setattr(module, prefix + name, val)
+          delattr(module, name)
+          safe_names.append(prefix + name)
 ```
 
 Originally, I thought the globals() or inspect module would be needed, especially to back out to the calling namespace (the __main__ namespace being the most interesting), but that turned out to be unnecessary, since the namespace can be directly imported from anywhere.  That key realization made it all simple!

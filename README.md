@@ -2,6 +2,16 @@
 
 This python package prefixes all your variable names with another name (underscore, by default).  It was an idle experiment to play with python's importlib, inspect standard modules and to get a deeper understanding of the Python language model.
 
+## Usage Example
+```python
+  >> import munger
+  >> a = 3
+  >> munger.munge()
+  >> ____main____a
+  3
+```
+
+
 *THIS IS FOR DEMONSTRATION PURPOSES ONLY.*
 
 Please note that this package breaks all of your variable names, producing some fairly tough-to-debug errors.  As such, it could be considered malware.  So be careful with it!

@@ -11,6 +11,16 @@ This python package prefixes all your variable names with another name (undersco
   3
 ```
 
+```python
+  >> import munger
+  >> munger.automunge()  # starts background thread that munges constantly.
+  >> a = 3
+  >> ____main____a
+  3
+  >> hi = 'world'
+  >> ____main____hi
+  'world'
+```
 
 *THIS IS FOR DEMONSTRATION PURPOSES ONLY.*
 
